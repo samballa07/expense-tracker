@@ -1,0 +1,37 @@
+﻿<Properties StartupConfiguration="{3562591F-6A31-4178-9E07-272272C300DC}|Default">
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.Workbench ActiveDocument="BudgetTracker/appsettings.json">
+    <Files>
+      <File FileName="BudgetTracker/Models/Item.cs" Line="1" Column="1" />
+      <File FileName="BudgetTracker/Models/BudgetTracker.cs" Line="1" Column="1" />
+      <File FileName="BudgetTracker/Models/ItemCategory.cs" Line="1" Column="1" />
+      <File FileName="BudgetTracker/Controllers/WeatherForecastController.cs" Line="1" Column="1" />
+      <File FileName="BudgetTracker/Controllers/BudgetTrackerController.cs" Line="22" Column="28" />
+      <File FileName="BudgetTracker/Program.cs" Line="1" Column="1" />
+      <File FileName="BudgetTracker/WeatherForecast.cs" Line="1" Column="1" />
+      <File FileName="BudgetTracker/appsettings.json" Line="1" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="BudgetTracker" expanded="True">
+            <Node name="BudgetTracker" expanded="True">
+              <Node name="Controllers" expanded="True" />
+              <Node name="Models" expanded="True" />
+              <Node name="appsettings.json" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State />
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.ItemProperties.BudgetTracker PreferredExecutionTarget="/Applications/Google Chrome.app" />
+</Properties>
