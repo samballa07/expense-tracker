@@ -4,6 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using BudgetTracker.Models;
+using MySqlConnector;
+using System.Data;
+using System.Data.Common;
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace BudgetTracker.Controllers
@@ -12,19 +15,48 @@ namespace BudgetTracker.Controllers
     [Route("api/[controller]")]
     public class BudgetTrackerController : ControllerBase
     {
+        public DbContext Db;
+
+        public BudgetTrackerController(DbContext conn)
+        {
+            Db = conn;
+        }
         // GET: api/values
         [HttpGet]
-        public IEnumerable<Item> Get()
+        async public Task<IActionResult> Get()
         {
+            await Db.Connection.OpenAsync();
+            using var cmd = Db.Connection.CreateCommand();
+            cmd.CommandText = "SELECT * FROM `User`";
+            var result = await ReadAllAsync(await cmd.ExecuteReaderAsync());
+            return new OkObjectResult(result);
+        }
 
-            return new Item[]{new Item
+        private async Task<List<User>> ReadAllAsync(DbDataReader reader)
+        {
+            var users = new List<User>();
+            using (reader)
             {
-                Amount = 2,
-                Category = ItemCategory.Wants,
-                DateAdded = new DateOnly(),
-                Id = Guid.NewGuid(),
-                Name = "Coffee"
-            }};
+                while (await reader.ReadAsync())
+                {
+                    byte[] passwordsalt = new byte[4];
+                    byte[] passwordhash = new byte[128];
+                    var userid = reader.GetInt32(0);
+                    var username = reader.GetString(1);
+                    reader.GetBytes(2, 0, passwordhash, 0, 128);
+                    reader.GetBytes(3, 0, passwordsalt, 0, 4);
+
+                    var user = new User
+                    {
+                        UserId = userid,
+                        Username = username,
+                        PasswordHash = passwordhash,
+                        PasswordSalt = passwordsalt
+                    };
+                    users.Add(user);
+                }
+            }
+            return users;
         }
 
         // GET api/values/5
